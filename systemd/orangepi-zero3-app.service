@@ -1,0 +1,14 @@
+[Unit]
+Description=Orange Pi Zero 3 Application
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/orangepi-zero3-app
+Environment=PATH=/opt/orangepi-zero3-app/venv/bin:/usr/local/opt/python@3.13/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Library/Apple/usr/bin:/usr/local/opt/python@3.13/bin:/Users/nick/.local/bin:/Users/nick/.cursor/extensions/ms-python.debugpy-2025.8.0-darwin-arm64/bundled/scripts/noConfigScripts:/Users/nick/Library/Application Support/Cursor/User/globalStorage/github.copilot-chat/debugCommand:/Users/nick/.local/bin:/Users/nick/.local/bin
+ExecStart=/opt/orangepi-zero3-app/venv/bin/uvicorn backend.main:app --host 0.0.0.0 --port 8000
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

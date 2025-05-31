@@ -1,0 +1,10 @@
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from backend.api import auth, system, logs
+app = FastAPI()
+app.add_middleware(CORSMiddleware,allow_origins=["*"],allow_credentials=True,allow_methods=["*"],allow_headers=["*"])
+app.include_router(auth.router, prefix="/auth", tags=["auth"])
+app.include_router(system.router, prefix="/system", tags=["system"])
+app.include_router(logs.router, prefix="/logs", tags=["logs"])
+app.mount("/", StaticFiles(directory="/opt/orangepi-zero3-app/frontend", html=True), name="static")
